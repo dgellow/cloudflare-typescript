@@ -39,8 +39,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+      - name: Install dependencies
+        run: |
+          yarn install
 
       - run: |
-          echo "hello world $MY_ENV_VAR_1"
+          yarn tsn examples/workers/ai/demo.ts
         env:
           MY_ENV_VAR_1: value 1
+          MY_SECRET_1: ${{ secrets.MY_SECRET_1 }}
